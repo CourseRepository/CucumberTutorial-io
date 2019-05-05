@@ -8,7 +8,8 @@ import cucumber.api.junit.Cucumber;
 @RunWith(Cucumber.class)
 @CucumberOptions(
 		features={"src/main/java/com/api/cucumber/featurefile/Login.feature"},
-		glue = {"com.api.cucumber.stepdfn","com.api.cucumber.transform"},
+		glue = {"com.api.cucumber.stepdfn"},
+		//,"com.api.cucumber.transform"
 		dryRun = false,
 		monochrome = true
 		)

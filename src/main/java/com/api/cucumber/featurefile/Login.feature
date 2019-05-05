@@ -8,6 +8,12 @@ Feature: User Login Feature
       | UserNameTwo   | PasswordTwo   |
       | UserNameThree | PasswordThree |
       | UserNameFour  | PasswordFour  |
+    When User login with the following username password and Address
+      | username      | password      | address      |
+      | UserNameOne   | PasswordOne   | AddressOne   |
+      | UserNameTwo   | PasswordTwo   | AddressTwo   |
+      | UserNameThree | PasswordThree | AddressThree |
+      | UserNameFour  | PasswordFour  | AddressFour  |
     Then User should be able to login with correct username and password
 
   Scenario Outline: scenario description
