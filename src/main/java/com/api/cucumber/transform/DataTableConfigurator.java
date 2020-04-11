@@ -4,8 +4,8 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
-import cucumber.api.TypeRegistry;
-import cucumber.api.TypeRegistryConfigurer;
+import io.cucumber.core.api.TypeRegistry;
+import io.cucumber.core.api.TypeRegistryConfigurer;
 import io.cucumber.datatable.DataTableType;
 import io.cucumber.datatable.TableEntryTransformer;
 import io.cucumber.datatable.TableRowTransformer;
@@ -41,5 +41,6 @@ public class DataTableConfigurator implements TypeRegistryConfigurer {
 		typeRegistry.defineDataTableType(rowType);
 		
 	}
+
 
 }

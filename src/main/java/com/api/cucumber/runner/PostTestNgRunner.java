@@ -1,8 +1,7 @@
 package com.api.cucumber.runner;
 
-import cucumber.api.CucumberOptions;
-import cucumber.api.testng.AbstractTestNGCucumberTests;
-
+import io.cucumber.testng.AbstractTestNGCucumberTests;
+import io.cucumber.testng.CucumberOptions;
 
 @CucumberOptions(
 		features = {"src/main/java/com/api/cucumber/featurefile/Login.feature",
