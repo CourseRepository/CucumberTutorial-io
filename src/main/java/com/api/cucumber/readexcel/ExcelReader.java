@@ -11,12 +11,17 @@ import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
+import io.cucumber.core.logging.Logger;
+import io.cucumber.core.logging.LoggerFactory;
+
 public class ExcelReader {
 
 	private String fileName;
 	private String sheetName;
 	private int sheetIndex;
 	private XSSFWorkbook book;
+
+	private Logger oLog = LoggerFactory.getLogger(ExcelReader.class);
 
 	private ExcelReader(ExcelReaderBuilder excelReaderBuilder) {
 		this.fileName = excelReaderBuilder.fileName;
@@ -65,33 +70,41 @@ public class ExcelReader {
 		return this.book.getSheetAt(sheetIndex);
 	}
 
-	public List<List<String>> getSheetData() throws IOException{
+	public List<List<String>> getSheetData() throws IOException {
 		XSSFSheet sheet;
 		List<List<String>> outerList = new LinkedList<>();
-		
+
 		try {
 			sheet = getWorkBookSheet(fileName, sheetName);
 			outerList = getSheetData(sheet);
-		} catch (InvalidFormatException e) {
+		} catch (Exception e) {
+			oLog.error(e, () -> {
+				return e.getMessage();
+			});
 			throw new RuntimeException(e.getMessage());
-		}finally {
-			this.book.close();
+		} finally {
+			if (this.book != null)
+				this.book.close();
 		}
 		return outerList;
 	}
-	
+
 	public List<List<String>> getSheetDataAt() throws InvalidFormatException, IOException {
-		
+
 		XSSFSheet sheet;
 		List<List<String>> outerList = new LinkedList<>();
-		
+
 		try {
 			sheet = getWorkBookSheet(fileName, sheetIndex);
 			outerList = getSheetData(sheet);
-		} catch (InvalidFormatException e) {
+		} catch (Exception e) {
+			oLog.error(e, () -> {
+				return e.getMessage();
+			});
 			throw new RuntimeException(e.getMessage());
-		}finally {
-			this.book.close();
+		} finally {
+			if (this.book != null)
+				this.book.close();
 		}
 		return outerList;
 	}
